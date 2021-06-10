@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+	<h3>Our Products</h3>
+	 {%if categories %}
+	 <div class="row">
+		 {% for category in categories %}
+			 <div >
+			 	<h4 class="category-name"><strong>{{ category.name }}</strong></h4>
+			 </div>
+			 {% for product in products %}
+				{% if product.category.name == category.name %}
+					<div class="col-lg-4">
+						<img src="{{ product.image.url }}" class="product-img thumbnail">
+						<div class="layer">
+							<h4><strong>{{product.name}}</strong></h4><hr>
+							<button data-product={{product.id}} data-action="add" class="btn btn-outline-primary update-cart">Add To Basket</button>
+							<button class="btn btn-outline-secondary product-detail">View</button>
+							<h4 style="display: inline-block;float: right;"><strong>$ {{ product.price }}</strong></h4>
+						</div>
+						<hr>
+					</div>
+				{% endif %}
+			{% endfor %}
+		 {% endfor %}
+		 </div>
+	 {% endif %}
+{% endblock %}
+
+
+
+
+
